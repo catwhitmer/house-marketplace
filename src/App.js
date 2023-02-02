@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import Category from "./pages/Category";
 import Listing from "./pages/Listing";
 import CreateListing from "./pages/CreateListing";
+import Contact from "./pages/Contact";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/category/:categoryName" element={<Category />} />
           <Route path="/category/:categoryName/:listingId" element={<Listing />} />
+          <Route path="/contact/:landlordId" element={<Contact />} />
           <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
