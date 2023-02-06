@@ -18,6 +18,7 @@ function CreateListing() {
   const navigate = useNavigate();
   const isMounted = useRef(true);
 
+  // eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
