@@ -100,7 +100,9 @@ function Profile() {
       toast.success("Successfully deleted listing");
     }
   };
-  const onEdit = () => {};
+  const onEdit = (listingId) => {
+    navigate(`/edit-listing/${listingId}`);
+  };
 
   return (
     <div className="profile">
