@@ -38,7 +38,7 @@ function Category() {
         // Execute query
         const querySnap = await getDocs(q);
 
-        const lastVisible = querySnap.docs(querySnap.docs.length - 1);
+        const lastVisible = querySnap.docs[querySnap.docs.length - 1];
         setLastFetchedListing(lastVisible);
 
         const listings = [];
@@ -60,7 +60,7 @@ function Category() {
     fetchListings();
   }, [params.categoryName]);
 
-  // Pagination / Load more
+  // Pagination / Load More
   const onFetchMoreListings = async () => {
     try {
       // Get reference
@@ -78,7 +78,7 @@ function Category() {
       // Execute query
       const querySnap = await getDocs(q);
 
-      const lastVisible = querySnap.docs(querySnap.docs.length - 1);
+      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
       setLastFetchedListing(lastVisible);
 
       const listings = [];
@@ -123,11 +123,12 @@ function Category() {
             </ul>
           </main>
 
-          <br/>
-          <br/>
+          <br />
+          <br />
           {lastFetchedListing && (
-            <p className="loadMore" onClick={onFetchMoreListings
-            }>Load More</p>
+            <p className="loadMore" onClick={onFetchMoreListings}>
+              Load More
+            </p>
           )}
         </>
       ) : (

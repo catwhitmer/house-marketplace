@@ -21,20 +21,20 @@ function Explore() {
               alt="rent"
               className="exploreCategoryImg"
             />
-            <p className="exploreCategoryName">Places For Rent</p>
+            <p className="exploreCategoryName">Places for rent</p>
           </Link>
-
           <Link to="/category/sale">
             <img
               src={sellCategoryImage}
               alt="sell"
               className="exploreCategoryImg"
             />
-            <p className="exploreCategoryName">Places For Sell</p>
+            <p className="exploreCategoryName">Places for sale</p>
           </Link>
         </div>
       </main>
     </div>
   );
 }
+
 export default Explore;

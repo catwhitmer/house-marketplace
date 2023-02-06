@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -15,8 +14,6 @@ import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
 
 function Offers() {
-  const params = useParams();
-
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetchedListing] = useState(null);
@@ -38,7 +35,7 @@ function Offers() {
         // Execute query
         const querySnap = await getDocs(q);
 
-        const lastVisible = querySnap.docs(querySnap.docs.length - 1);
+        const lastVisible = querySnap.docs[querySnap.docs.length - 1];
         setLastFetchedListing(lastVisible);
 
         const listings = [];
@@ -60,7 +57,7 @@ function Offers() {
     fetchListings();
   }, []);
 
-  // Pagination / Load more
+  // Pagination / Load More
   const onFetchMoreListings = async () => {
     try {
       // Get reference
@@ -78,7 +75,7 @@ function Offers() {
       // Execute query
       const querySnap = await getDocs(q);
 
-      const lastVisible = querySnap.docs(querySnap.docs.length - 1);
+      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
       setLastFetchedListing(lastVisible);
 
       const listings = [];
@@ -119,12 +116,12 @@ function Offers() {
             </ul>
           </main>
 
-          
-          <br/>
-          <br/>
+          <br />
+          <br />
           {lastFetchedListing && (
-            <p className="loadMore" onClick={onFetchMoreListings
-            }>Load More</p>
+            <p className="loadMore" onClick={onFetchMoreListings}>
+              Load More
+            </p>
           )}
         </>
       ) : (
