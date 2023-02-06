@@ -19,6 +19,7 @@ function ListingItem({ listing, id, onEdit, onDelete }) {
         <div className="categoryListingDetails">
           <p className="categoryListingLocation">{listing.location}</p>
           <p className="categoryListingName">{listing.name}</p>
+
           <p className="categoryListingPrice">
             $
             {listing.offer
@@ -28,7 +29,7 @@ function ListingItem({ listing, id, onEdit, onDelete }) {
               : listing.regularPrice
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            {listing.type === "rent" && "/Month"}
+            {listing.type === "rent" && " / Month"}
           </p>
           <div className="categoryListingInfoDiv">
             <img src={bedIcon} alt="bed" />
@@ -37,7 +38,7 @@ function ListingItem({ listing, id, onEdit, onDelete }) {
                 ? `${listing.bedrooms} Bedrooms`
                 : "1 Bedroom"}
             </p>
-            <img src={bathtubIcon} alt="bathtub" />
+            <img src={bathtubIcon} alt="bath" />
             <p className="categoryListingInfoText">
               {listing.bathrooms > 1
                 ? `${listing.bathrooms} Bathrooms`
@@ -50,7 +51,7 @@ function ListingItem({ listing, id, onEdit, onDelete }) {
       {onDelete && (
         <DeleteIcon
           className="removeIcon"
-          fill="rgb(231, 76, 60)"
+          fill="rgb(231, 76,60)"
           onClick={() => onDelete(listing.id, listing.name)}
         />
       )}
