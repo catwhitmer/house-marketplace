@@ -21,18 +21,24 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Explore />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/offers" element={<Offers />} />
-          <Route path="/create-listing" element={<CreateListing />} />
-          <Route path="/edit-listing/:listingId" element={<EditListing />} />
           <Route path="/category/:categoryName" element={<Category />} />
-          <Route path="/category/:categoryName/:listingId" element={<Listing />} />
-          <Route path="/contact/:landlordId" element={<Contact />} />
+          <Route path="/offers" element={<Offers />} />
           <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
+
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          
+          <Route
+            path="/category/:categoryName/:listingId"
+            element={<Listing />}
+          />
+          <Route path="/create-listing" element={<CreateListing />} />
+          <Route path="/edit-listing/:listingId" element={<EditListing />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+
+          <Route path="/contact/:landlordId" element={<Contact />} />
         </Routes>
         <NavBar />
       </Router>
