@@ -49,6 +49,10 @@ function Slider() {
         <p className="exploreHeading">Recommended</p>
 
         <Swiper
+          style={{
+            minHeight: "225px",
+            height: "23vw",
+          }}
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           slidesPerView={1}
           pagination={{ clickable: true }}
@@ -59,14 +63,36 @@ function Slider() {
               onClick={() => navigate(`/category/${data.type}/${id}`)}
             >
               <div
+                className="swiperSlideDiv"
                 style={{
                   background: `url(${data.imgUrls[0]}) center no-repeat`,
                   backgroundSize: "cover",
-                  height: "800px"
+                  width: "100%",
+                  height: "100%",
                 }}
               >
-                <p>{data.name}</p>
-                <p>
+                <p
+                  style={{
+                    color: "#ffffff",
+                    top: "70px",
+                    fontWeight: "600",
+                    maxWidth: "90%",
+                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                    padding: "0.5rem",
+                  }}
+                >
+                  {data.name}
+                </p>
+                <p
+                  style={{
+                    color: "#000000",
+                    top: "143px",
+                    fontWeight: "600",
+                    maxWidth: "90%",
+                    backgroundColor: "#ffffff",
+                    padding: "1rem",
+                  }}
+                >
                   ${data.discountedPrice ?? data.regularPrice}{" "}
                   {data.type === "rent" && "/ month"}
                 </p>

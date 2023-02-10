@@ -41,6 +41,10 @@ function Listing() {
     <main>
       <title>{listing.name}</title>
       <Swiper
+        style={{
+          minHeight: "225px",
+          height: "23vw",
+        }}
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         slidesPerView={1}
         pagination={{ clickable: true }}
@@ -51,7 +55,8 @@ function Listing() {
               style={{
                 background: `url(${listing.imgUrls[index]}) center no-repeat`,
                 backgroundSize: "cover",
-                height: "600px",
+                width: "100%",
+                height: "100%",
               }}
             ></div>
           </SwiperSlide>
