@@ -1,24 +1,25 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { register } from "swiper/element/bundle";
-import "swiper/swiper-bundle.css";
 import Spinner from "../components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
 
-register();
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 function Listing() {
-  const navigate = useNavigate();
-  const params = useParams();
-  const auth = getAuth();
-
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [shareLinkCopied, setShareLinkCopied] = useState(false);
+
+  const navigate = useNavigate();
+  const params = useParams();
+  const auth = getAuth();
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -40,9 +41,10 @@ function Listing() {
 
   return (
     <main>
-      <swiper-container slidesPerView={1} pagination={{ clickable: true }}>
+      <title>{listing.name}</title>
+      <Swiper slidesPerView={1} pagination={{ clickable: true }}>
         {listing.imgUrls.map((url, index) => (
-          <swiper-slide key={index}>
+          <SwiperSlide key={index}>
             <div
               style={{
                 background: `url(${listing.imgUrls[index]}) center no-repeat`,
@@ -50,9 +52,9 @@ function Listing() {
               }}
               className="swiperSlideDiv"
             ></div>
-          </swiper-slide>
+          </SwiperSlide>
         ))}
-      </swiper-container>
+      </Swiper>
 
       <div
         className="shareIconDiv"
@@ -64,7 +66,7 @@ function Listing() {
           }, 2000);
         }}
       >
-        <img src={shareIcon} alt="Share Icon" />
+        <img src={shareIcon} alt="" />
       </div>
 
       {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
@@ -85,7 +87,7 @@ function Listing() {
           For {listing.type === "rent" ? "Rent" : "Sale"}
         </p>
         {listing.offer && (
-          <p className="discountedPrice">
+          <p className="discountPrice">
             ${listing.regularPrice - listing.discountedPrice} discount
           </p>
         )}
@@ -106,6 +108,7 @@ function Listing() {
         </ul>
 
         <p className="listingLocationTitle">Location</p>
+
         <div className="leafletContainer">
           <MapContainer
             style={{ height: "100%", width: "100%" }}

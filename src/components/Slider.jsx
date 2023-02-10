@@ -2,17 +2,18 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase.config";
-import { register } from "swiper/element/bundle";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import Spinner from "./Spinner";
 
-register();
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 function Slider() {
-  const navigate = useNavigate();
-
   const [loading, setLoading] = useState(true);
   const [listings, setListings] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -49,9 +50,9 @@ function Slider() {
       <>
         <p className="exploreHeading">Recommended</p>
 
-        <swiper-container slides-per-view="1" pagination="true">
+        <Swiper slidesPerView={1} pagination={{ clickable: true }}>
           {listings.map(({ data, id }) => (
-            <swiper-slide
+            <SwiperSlide
               key={id}
               onClick={() => navigate(`/category/${data.type}/${id}`)}
             >
@@ -68,9 +69,9 @@ function Slider() {
                   {data.type === "rent" && "/ month"}
                 </p>
               </div>
-            </swiper-slide>
+            </SwiperSlide>
           ))}
-        </swiper-container>
+        </Swiper>
       </>
     )
   );
