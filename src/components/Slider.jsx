@@ -50,7 +50,7 @@ function Slider() {
 
         <Swiper
           style={{
-            minHeight: "225px",
+            minHeight: "725px",
             height: "23vw",
           }}
           modules={[Navigation, Pagination, Scrollbar, A11y]}
