@@ -42,7 +42,7 @@ function Listing() {
       <title>{listing.name}</title>
       <Swiper
         style={{
-          minHeight: "225px",
+          minHeight: "625px",
           height: "23vw",
         }}
         modules={[Navigation, Pagination, Scrollbar, A11y]}
